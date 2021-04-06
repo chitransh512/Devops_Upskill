@@ -1,0 +1,2 @@
+We can achieve this by creating a group with read permission & adding pradeep into that group.
+Hence pradeep can read the content of the file.
