@@ -1,0 +1,11 @@
+1. Done
+
+2. Missing the location as currently you are searching in current direcory and need to improve searching files and dirs.
+
+3. One line command is good but output is missing some attributes.
+
+4. Somewhat correct, But missing the git webhook configration settings.
+
+5. As per your instructions, if we give read permission to a group then all the members of that group will be able to access too.
+
+6. Somewhat correct. Another way of doing this is that you could copy your script to the /usr/local/bin insted of creating a new alias in profile.
