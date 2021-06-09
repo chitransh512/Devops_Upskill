@@ -1,0 +1,10 @@
+DevOps Final Assignment
+
+
+
+Create a VPC through terraform with 4 subnets and use CIDR that consists of minimum IPs.  ( Networking basics, Terraform )
+Create a CI/CD pipeline using jenkinsfile (  No Freestyle project )  to build, test and deploy docker containers from a private repository. ( CI/CD , Git  )
+Replicate s3 bucket from one bucket to another bucket of different accounts. ( S3 , IAM )
+Create cloudfront for a failover website with s3 bucket and route53. ( DNS , CDN , S3 replication )
+Create a service in ECS with 2 replicas and attach it with load balancer. ( Containers , ECS , ALB )
+Create scp user which should have no privileges to do ssh. ( linux )
