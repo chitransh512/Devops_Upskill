@@ -1,0 +1,39 @@
+Jenkinsfile:
+
+node{
+ stage('SCM Checkout'){
+ git credentialsId: 'git-cred', url: 'https://github.com/ag0058051/JenkinsPipeline.git'
+ }
+ 
+ stage('Build Docker Image'){
+ sh 'docker build -t ashish/app'
+ }
+ 
+ stage('Testing Docker Image Build')
+ {
+ sh 'docker ps'
+ }
+ 
+ stage('Push Docker Image'){
+ withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+ 
+ sh "docker login -u ag0058051 -p $dockerHubPwd"
+ }
+ sh 'docker push ashish/app'
+ } 
+}
+
+ Dockerfile:
+FROM ubuntu:latest
+
+RUN apt-get update
+RUN apt-get install -y python python3-pip
+RUN pip install Flask
+
+ADD ashish.py /home/ashish.py
+
+WORKDIR /home
+Code for hello.py:
+#! /usr/local/bin/python3
+
+print('Hello, world!')
