@@ -1,0 +1,44 @@
+pipeline {
+  agent any
+  environment {
+		REGISTRY= 'aakash-devops-test/first'
+		CREDS= 'dockerhub'
+    DOCKERIMAGE= ''
+	}
+    stages {
+      stage('Cloning Git') { 
+            steps {
+              git 'https://gitlab.com/sky-raghav/recipe-app-api-devops' 
+            }
+        } 
+      stage('Build') {
+          steps {
+            echo "Build Stage"
+            script {
+              DOCKERIMAGE = docker.build REGISTRY + ":$BUILD_NUMBER" 
+            }
+          }
+      }
+      stage('Test') {
+        agent {
+          docker { image 'docker:19.03.5-dind' }
+        }
+        steps {
+          echo "Test Stage"
+            script {
+              sh 'apk add --update docker-compose'
+              sh 'docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py test && flake8"'
+            }
+        }
+      }
+      stage('Push') {
+			steps {
+        echo 'Push Stage'
+				script {
+					docker.withRegistry('https://registry.hub.docker.com', CREDS) {
+					  DOCKERIMAGE.push('latest')
+					}
+				}
+			}
+    }
+}

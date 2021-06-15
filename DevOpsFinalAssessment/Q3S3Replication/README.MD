@@ -1,0 +1,1 @@
+Screenshots are named in serial manner to show the steps.

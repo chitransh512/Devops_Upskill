@@ -1,0 +1,1 @@
+All Solutions contains their own readme files for further expalanations.
